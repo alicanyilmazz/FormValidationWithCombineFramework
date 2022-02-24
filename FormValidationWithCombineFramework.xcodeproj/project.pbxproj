@@ -13,6 +13,18 @@
 		5AACCFB127C7EBCE002049FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5AACCFAF27C7EBCE002049FC /* Main.storyboard */; };
 		5AACCFB327C7EBCF002049FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5AACCFB227C7EBCF002049FC /* Assets.xcassets */; };
 		5AACCFB627C7EBCF002049FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5AACCFB427C7EBCF002049FC /* LaunchScreen.storyboard */; };
+		5AACCFC127C7ED2B002049FC /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AACCFC027C7ED2B002049FC /* Model.swift */; };
+		5AACCFC327C7ED34002049FC /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AACCFC227C7ED34002049FC /* Error.swift */; };
+		5AACCFC527C7ED3D002049FC /* Pattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AACCFC427C7ED3D002049FC /* Pattern.swift */; };
+		5AACCFC727C7ED58002049FC /* RegexFormItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AACCFC627C7ED58002049FC /* RegexFormItem.swift */; };
+		5AACCFC927C7ED61002049FC /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AACCFC827C7ED61002049FC /* Builder.swift */; };
+		5AACCFCC27C7F041002049FC /* FormButtonCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AACCFCB27C7F041002049FC /* FormButtonCollection.swift */; };
+		5AACCFCE27C7F04D002049FC /* FormTextCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AACCFCD27C7F04D002049FC /* FormTextCollection.swift */; };
+		5AACCFD027C7F05B002049FC /* FormDateCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AACCFCF27C7F05A002049FC /* FormDateCollection.swift */; };
+		5AACCFD327C7F11C002049FC /* UITableViewCell+Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AACCFD227C7F11C002049FC /* UITableViewCell+Identifier.swift */; };
+		5AACCFD527C7F137002049FC /* UITableViewCell+ReuseCleanUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AACCFD427C7F137002049FC /* UITableViewCell+ReuseCleanUp.swift */; };
+		5AACCFD727C7F147002049FC /* UITextField+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AACCFD627C7F147002049FC /* UITextField+Validation.swift */; };
+		5AACCFDB27C7F31F002049FC /* FormCompositionalLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AACCFDA27C7F31F002049FC /* FormCompositionalLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +36,18 @@
 		5AACCFB227C7EBCF002049FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5AACCFB527C7EBCF002049FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5AACCFB727C7EBCF002049FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5AACCFC027C7ED2B002049FC /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		5AACCFC227C7ED34002049FC /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		5AACCFC427C7ED3D002049FC /* Pattern.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pattern.swift; sourceTree = "<group>"; };
+		5AACCFC627C7ED58002049FC /* RegexFormItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexFormItem.swift; sourceTree = "<group>"; };
+		5AACCFC827C7ED61002049FC /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
+		5AACCFCB27C7F041002049FC /* FormButtonCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormButtonCollection.swift; sourceTree = "<group>"; };
+		5AACCFCD27C7F04D002049FC /* FormTextCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextCollection.swift; sourceTree = "<group>"; };
+		5AACCFCF27C7F05A002049FC /* FormDateCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormDateCollection.swift; sourceTree = "<group>"; };
+		5AACCFD227C7F11C002049FC /* UITableViewCell+Identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Identifier.swift"; sourceTree = "<group>"; };
+		5AACCFD427C7F137002049FC /* UITableViewCell+ReuseCleanUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+ReuseCleanUp.swift"; sourceTree = "<group>"; };
+		5AACCFD627C7F147002049FC /* UITextField+Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Validation.swift"; sourceTree = "<group>"; };
+		5AACCFDA27C7F31F002049FC /* FormCompositionalLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormCompositionalLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +80,10 @@
 		5AACCFA827C7EBCE002049FC /* FormValidationWithCombineFramework */ = {
 			isa = PBXGroup;
 			children = (
+				5AACCFD927C7F30B002049FC /* Layouts */,
+				5AACCFD127C7F100002049FC /* Extensions */,
+				5AACCFCA27C7F024002049FC /* Views */,
+				5AACCFBF27C7ED1D002049FC /* Core */,
 				5AACCFA927C7EBCE002049FC /* AppDelegate.swift */,
 				5AACCFAB27C7EBCE002049FC /* SceneDelegate.swift */,
 				5AACCFAD27C7EBCE002049FC /* ViewController.swift */,
@@ -65,6 +93,46 @@
 				5AACCFB727C7EBCF002049FC /* Info.plist */,
 			);
 			path = FormValidationWithCombineFramework;
+			sourceTree = "<group>";
+		};
+		5AACCFBF27C7ED1D002049FC /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				5AACCFC027C7ED2B002049FC /* Model.swift */,
+				5AACCFC227C7ED34002049FC /* Error.swift */,
+				5AACCFC427C7ED3D002049FC /* Pattern.swift */,
+				5AACCFC627C7ED58002049FC /* RegexFormItem.swift */,
+				5AACCFC827C7ED61002049FC /* Builder.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		5AACCFCA27C7F024002049FC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5AACCFCB27C7F041002049FC /* FormButtonCollection.swift */,
+				5AACCFCD27C7F04D002049FC /* FormTextCollection.swift */,
+				5AACCFCF27C7F05A002049FC /* FormDateCollection.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5AACCFD127C7F100002049FC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5AACCFD227C7F11C002049FC /* UITableViewCell+Identifier.swift */,
+				5AACCFD427C7F137002049FC /* UITableViewCell+ReuseCleanUp.swift */,
+				5AACCFD627C7F147002049FC /* UITextField+Validation.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		5AACCFD927C7F30B002049FC /* Layouts */ = {
+			isa = PBXGroup;
+			children = (
+				5AACCFDA27C7F31F002049FC /* FormCompositionalLayout.swift */,
+			);
+			path = Layouts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +206,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AACCFC727C7ED58002049FC /* RegexFormItem.swift in Sources */,
+				5AACCFC527C7ED3D002049FC /* Pattern.swift in Sources */,
 				5AACCFAE27C7EBCE002049FC /* ViewController.swift in Sources */,
+				5AACCFDB27C7F31F002049FC /* FormCompositionalLayout.swift in Sources */,
 				5AACCFAA27C7EBCE002049FC /* AppDelegate.swift in Sources */,
+				5AACCFD527C7F137002049FC /* UITableViewCell+ReuseCleanUp.swift in Sources */,
+				5AACCFCE27C7F04D002049FC /* FormTextCollection.swift in Sources */,
+				5AACCFD027C7F05B002049FC /* FormDateCollection.swift in Sources */,
+				5AACCFCC27C7F041002049FC /* FormButtonCollection.swift in Sources */,
 				5AACCFAC27C7EBCE002049FC /* SceneDelegate.swift in Sources */,
+				5AACCFD327C7F11C002049FC /* UITableViewCell+Identifier.swift in Sources */,
+				5AACCFD727C7F147002049FC /* UITextField+Validation.swift in Sources */,
+				5AACCFC327C7ED34002049FC /* Error.swift in Sources */,
+				5AACCFC127C7ED2B002049FC /* Model.swift in Sources */,
+				5AACCFC927C7ED61002049FC /* Builder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
