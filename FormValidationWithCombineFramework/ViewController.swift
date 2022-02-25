@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    private lazy var formContentBuilder = FormContentBuilderImpl()
+    private lazy var formContentBuilder = formComponentBuilderImpl()
        private lazy var formCompositionalLayout = FormCompositionalLayout()
        private lazy var dataSource = makeDataSource()
        

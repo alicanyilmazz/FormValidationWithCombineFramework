@@ -6,11 +6,15 @@
 //
 
 import UIKit
+import Combine
 
 class FormTextCollectionViewCell: UICollectionViewCell {
     
     private var item: TextFormComponent?
     private var indexPath: IndexPath?
+    
+    private(set) var subject = PassthroughSubject<(String,IndexPath),Never>()
+    private var subscriptions = Set<AnyCancellable>()
     
     private lazy var txtField: UITextField = {
         let txtField = UITextField()
@@ -50,6 +54,7 @@ class FormTextCollectionViewCell: UICollectionViewCell {
         removeViews()
         self.item = nil
         self.indexPath = nil
+        subscriptions = []
     }
 }
 
@@ -57,12 +62,35 @@ private extension FormTextCollectionViewCell {
     
     func setup(item: TextFormComponent) {
         
+        NotificationCenter.default.publisher(for: UITextField.textDidChangeNotification, object: txtField).compactMap {
+            ($0.object as? UITextField)?.text}.map(String.init).sink{ [weak self] val in
+                guard let self = self ,let indexPath = self.indexPath else { return }
+                
+                do{
+                    for validator in item.validations{
+                        try validator.validate(val)
+                    }
+                    
+                    self.txtField.valid()
+                    self.errorLbl.text = " "
+                    self.subject.send((val,indexPath))
+                }catch{
+                    self.txtField.invalid()
+                    if let validationError = error as? ValidationError{
+                        switch validationError {
+                        case .custom(let message):
+                            self.errorLbl.text = message
+                        }
+                    }
+                }
+                
+            }.store(in: &subscriptions)
+        
         // Setup
         txtField.delegate = self
         txtField.placeholder = " \(item.placeholder)"
         txtField.keyboardType = item.keyboardType
 
-        
         // Layout
         
         contentView.addSubview(contentStackVw)
