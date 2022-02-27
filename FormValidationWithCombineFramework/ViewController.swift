@@ -6,12 +6,15 @@
 //
 
 import UIKit
+import Combine
 
 class ViewController: UIViewController {
 
-    private lazy var formContentBuilder = formComponentBuilderImpl()
+       private lazy var formContentBuilder = formComponentBuilderImpl()
        private lazy var formCompositionalLayout = FormCompositionalLayout()
        private lazy var dataSource = makeDataSource()
+    
+       private var subscriptions = Set<AnyCancellable>()
        
        private lazy var collectionVw: UICollectionView = {
            let cv = UICollectionView(frame: .zero, collectionViewLayout: formCompositionalLayout.layout)
@@ -28,9 +31,8 @@ class ViewController: UIViewController {
             super.loadView()
             setup()
             updateDataSource()
+            newUserSubscription()
         }
-
-
 }
 
 private extension ViewController {
@@ -53,22 +55,41 @@ private extension ViewController {
     
     func makeDataSource() -> UICollectionViewDiffableDataSource<FormSectionComponent, FormComponent> {
             
-            return UICollectionViewDiffableDataSource(collectionView: collectionVw) { collectionVw, indexPath, item in
+            return UICollectionViewDiffableDataSource(collectionView: collectionVw) { [weak self] collectionVw, indexPath, item in
+                
+                guard let self = self else {
+                    let cell = collectionVw.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
+                    return cell
+                }
                 
                 switch item {
                 case is TextFormComponent:
                     let cell = collectionVw.dequeueReusableCell(withReuseIdentifier: FormTextCollectionViewCell.cellId,
                                                                 for: indexPath) as! FormTextCollectionViewCell
+                    cell.subject.sink { [weak self] (val, indexPath) in
+                        self?.formContentBuilder.update(val: val, at: indexPath)
+                    }.store(in: &self.subscriptions)
+                    
                     cell.bind(item, at: indexPath)
                     return cell
                 case is DateFormComponent:
                     let cell = collectionVw.dequeueReusableCell(withReuseIdentifier: FormDateCollectionViewCell.cellId,
                                                                 for: indexPath) as! FormDateCollectionViewCell
+                    cell.subject.sink { [weak self] (val, indexPath) in
+                        self?.formContentBuilder.update(val: val, at: indexPath)
+                    }.store(in: &self.subscriptions)
                     cell.bind(item, at: indexPath)
                     return cell
                 case is ButtonFormItem:
                     let cell = collectionVw.dequeueReusableCell(withReuseIdentifier: FormButtonCollectionViewCell.cellId,
                                                                 for: indexPath) as! FormButtonCollectionViewCell
+                    cell.subject.sink{ [weak self] formId in
+                        switch formId{
+                        case .submit: self?.formContentBuilder.validate()
+                        default:
+                            break
+                        }
+                    }.store(in: &self.subscriptions)
                     cell.bind(item)
                     return cell
                 default:
@@ -99,5 +120,10 @@ private extension ViewController {
             collectionVw.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionVw.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
+    }
+    func newUserSubscription(){
+        formContentBuilder.user.sink { [weak self] val in
+            print(val)
+        }.store(in: &subscriptions)
     }
 }
