@@ -21,6 +21,8 @@ class FormButtonCollectionViewCell: UICollectionViewCell {
     }()
     
     private var item: ButtonFormItem?
+    private(set) var subject = PassthroughSubject<FormField,Never>()
+    private var subscriptions = Set<AnyCancellable>()
 
     func bind(_ item: FormComponent) {
         guard let item = item as? ButtonFormItem else { return }
@@ -57,6 +59,7 @@ private extension FormButtonCollectionViewCell {
     func actionDidTap() {
         
         guard let item = item else { return }
+        self.subject.send(item.formId)
         
     }
 }
