@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 class FormDateCollectionViewCell: UICollectionViewCell {
     
@@ -30,6 +31,9 @@ class FormDateCollectionViewCell: UICollectionViewCell {
         stackVw.spacing = 8
         return stackVw
     }()
+    
+    private var subscription  = Set<AnyCancellable>()
+    private(set) var subject = PassthroughSubject<(Date,IndexPath),Never>()
     
     private var item: DateFormComponent?
     private var indexPath: IndexPath?
@@ -73,8 +77,24 @@ private extension FormDateCollectionViewCell {
     
     @objc func datePickerChanged(picker: UIDatePicker) {
 
-        guard let indexPath = indexPath,
-              let item = item else { return }
-
+        guard let indexPath = indexPath,let item = item else { return }
+        
+        let selectedDate = datePicker.date
+        self.subject.send((selectedDate,indexPath))
+        
+        do {
+          
+            for validator in item.validations{
+                try validator.validate(selectedDate)
+            }
+            self.errorLbl.text = " "
+        } catch  {
+            if let validationError = error as? ValidationError{
+                switch validationError {
+                case .custom(let message):
+                    self.errorLbl.text = message
+                }
+            }
+        }
     }
 }
