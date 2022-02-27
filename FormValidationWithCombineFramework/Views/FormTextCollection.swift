@@ -59,12 +59,14 @@ class FormTextCollectionViewCell: UICollectionViewCell {
 }
 
 private extension FormTextCollectionViewCell {
-    
+     
     func setup(item: TextFormComponent) {
         
         NotificationCenter.default.publisher(for: UITextField.textDidChangeNotification, object: txtField).compactMap {
             ($0.object as? UITextField)?.text}.map(String.init).sink{ [weak self] val in
                 guard let self = self ,let indexPath = self.indexPath else { return }
+                
+                self.subject.send((val,indexPath))
                 
                 do{
                     for validator in item.validations{
@@ -73,7 +75,7 @@ private extension FormTextCollectionViewCell {
                     
                     self.txtField.valid()
                     self.errorLbl.text = " "
-                    self.subject.send((val,indexPath))
+                    
                 }catch{
                     self.txtField.invalid()
                     if let validationError = error as? ValidationError{
