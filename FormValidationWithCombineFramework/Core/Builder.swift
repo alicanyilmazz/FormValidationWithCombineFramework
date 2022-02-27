@@ -6,8 +6,12 @@
 //
 
 import Foundation
+import Combine
 
 final class formComponentBuilderImpl{
+    
+    private(set) var user = PassthroughSubject<[String : Any],Never>()
+    
     private(set) var formContent = [
         FormSectionComponent(items: [
             TextFormComponent(id: .firstName, placeholder: "First Name",validations: [RegexValidationManagerImpl([RegexFormItem(pattern: RegexPatterns.name, error: .custom(message: "Invalid Name Entered"))])]),
@@ -17,5 +21,27 @@ final class formComponentBuilderImpl{
             ButtonFormItem(id: .submit, title: "Confirm")
         ])
     ]
+    
+    func update(val: Any , at indexPath: IndexPath){
+        formContent[indexPath.section].items[indexPath.row].value = val
+    }
+    
+    func validate(){
+        do {
+            let formComponents = formContent.flatMap{$0.items}.filter{$0.formId != .submit}
+            for component in formComponents {
+                for validator in component.validations{
+                    try validator.validate(component.value as Any)
+                }
+            }
+            let validValues = formComponents.map{($0.formId.rawValue,$0.value)}
+            let validDict = Dictionary(uniqueKeysWithValues: validValues) as [String : Any]
+            
+            // Passthrough here
+            user.send(validDict)
+        } catch  {
+            print("Something is wrong with form \(error)")
+        }
+    }
 }
 
