@@ -53,8 +53,9 @@ private extension ViewController {
         }
     }
     
+    
     func makeDataSource() -> UICollectionViewDiffableDataSource<FormSectionComponent, FormComponent> {
-            
+        
             return UICollectionViewDiffableDataSource(collectionView: collectionVw) { [weak self] collectionVw, indexPath, item in
                 
                 guard let self = self else {
@@ -69,7 +70,7 @@ private extension ViewController {
                     cell.subject.sink { [weak self] (val, indexPath) in
                         self?.formContentBuilder.update(val: val, at: indexPath)
                     }.store(in: &self.subscriptions)
-                    
+                   
                     cell.bind(item, at: indexPath)
                     return cell
                 case is DateFormComponent:
@@ -78,6 +79,7 @@ private extension ViewController {
                     cell.subject.sink { [weak self] (val, indexPath) in
                         self?.formContentBuilder.update(val: val, at: indexPath)
                     }.store(in: &self.subscriptions)
+                    
                     cell.bind(item, at: indexPath)
                     return cell
                 case is ButtonFormItem:
@@ -90,6 +92,7 @@ private extension ViewController {
                             break
                         }
                     }.store(in: &self.subscriptions)
+                    
                     cell.bind(item)
                     return cell
                 default:

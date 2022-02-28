@@ -34,7 +34,6 @@ struct RegexValidationManagerImpl : ValidationManager{
                 throw regexItem.error
             }
         })
-        
     }
 }
 
